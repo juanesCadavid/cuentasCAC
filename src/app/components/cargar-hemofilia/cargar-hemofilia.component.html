@@ -1,0 +1,240 @@
+<div class="y-card" style="height: 100%; width: 100%;">
+  
+  <div class="y-card-header" style=" padding: 10px;">
+
+    <div class="y-card" style="height: 100%; border: 1px solid #20b6bd;border-radius: 5px; background: #f3f9ff;">
+
+      <div id="accordion" class="y-card-header align-items-center justify-content-between"
+        style="padding: 1px;background: #20b6bd;font-weight: 500; border-radius: 5px 5px 2px 2px;color: white;">
+        <label style="top: 6px;position: relative;left: 10px;">Carga Hemofilia</label>
+        <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon" data-toggle="collapse"
+          data-target="#collapse2" id="menu" data-toggle="collapse" data-target="#collapse2" aria-expanded="true"
+          aria-controls="collapse2" style="top: 11px;position: relative;color: white;">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div id="collapse2" aria-labelledby="headingOne" data-parent="#accordion" class="y-card-body collapse show ">
+
+        <div id="borde" class="y-card" style=" border: 1px solid lightskyblue; background: #f3f9ff;border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;">
+          <div class="y-card-body" draggable="true" ngClass="{{dragAreaClass}}">
+            <div class="row" style="width: 100%;">
+              <div class="col-md-3">
+                <img [src]="'assets/img/carga.svg'" class="ing-fluid" alt="no image" id="ima">
+              </div>
+              <div class="col-md-4">
+                <!-- <button type="submit" class="btn btn-outline-primary" id="button" (click)="photoInput.click()"><i
+                class="fas fa-search"></i> Seleccionar archivo</button>
+            <input type="file" accept="application/zip" (change)="Seleccionarzip($event)" multiple="false"
+              id="inputFileServer" class="d-none" #photoInput> -->
+
+                <p-fileUpload #form name="demo[]" styleClass="componenty" (onRemove)="onRemove()"
+                  (onSelect)="onUpload($event,form)" [showCancelButton]="false" [multiple]="false"
+                  [showUploadButton]="false" chooseLabel="Seleccionar archivo" [customUpload]="true"
+                  chooseIcon="pi pi-search">
+                  <!-- <p-fileUpload #form name="myfile[]" [customUpload]="true" (uploadHandler)="myUploader($event, form)"> -->
+                  <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                  </ul>
+                  <ng-template pTemplate="content" let-files>
+                    <div class="cont-img-ca">
+                      <i class="fas fa-upload"></i>
+                      <strong>Arrastra archivo para cargar</strong>
+                    </div>
+                  </ng-template>
+                </p-fileUpload>
+              </div>
+              <div class="col-md-2">
+
+                <p-knob styleClass="Porcentaje" [(ngModel)]="value6" valueTemplate="{value}%"></p-knob>
+              </div>
+
+              <div class="col-md-3">
+                <div class="reporte">
+                  <strong>Estado de Reporte</strong>
+                  <table>
+                    <tr>
+                      <td>
+                        <button
+                          style="background-image: linear-gradient(60deg, #96deda 0%, #50c9c3 100%); color: white; border: none;">Exitoso</button>
+                      </td>
+                      <td>
+                        <button
+                          style="border: none; background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);  color: white;">Con
+                          errores</button>
+                      </td>
+                      <td>
+                        <button
+                          style="border: none; background-image: linear-gradient(to right, #ed6ea0 0%, #e994bb 100%); color: white;">Rechazado</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="y-card-body" style="overflow: hidden; padding: 5px;">
+    <p-table [value]="hemofilia" styleClass="p-datatable-sm" [scrollable]="true"  scrollHeight="140px"
+      tableStyleClass="prime-table">
+      <ng-template pTemplate="header">
+        <tr tableStyleClass="header">
+          <th style="width:90px;background-color: #02adb5e0; color: white;">Radicado <i class="fas fa-filter"
+              (click)="open(content)" style="cursor: pointer;"></i> </th>
+          <th style="width:150px;background-color: #02adb5e0; color: white;">Nombre archivo <i class="fas fa-filter"
+              (click)="nombrearchiv(content2)" style="cursor: pointer;"></i> </th>
+          <th style="width:110px;background-color: #02adb5e0; color: white;">Fecha cargue</th>
+          <th style="width:100px;background-color: #02adb5e0; color: white;">R.Procesados</th>
+          <th style="width:80px;background-color: #02adb5e0; color: white;">R.Cargados</th>
+          <th style="width:60px;background-color: #02adb5e0; color: white;">%</th>
+          <th style="width:80px;background-color: #02adb5e0; color: white;">E.Tipo A</th>
+          <th style="width:80px;background-color: #02adb5e0; color: white;">E.Tipo B</th>
+          <th style="width:80px;background-color: #02adb5e0; color: white;">Estado <i class="fas fa-filter"
+              (click)="open(content4)" style="cursor: pointer;"></i></th>
+          <th style="width:70px;background-color: #02adb5e0; color: white;">Vigente <i class="fas fa-filter"
+              (click)="vigent(content3)" style="cursor: pointer;"></i></th>
+          <th style="width:80px;background-color: #02adb5e0; color: white;">Perfil</th>
+          <th style="width:80px;background-color: #02adb5e0; color: white;">Usuario</th>
+          <th style="width:60px;background-color: #02adb5e0; color: white;">Logs</th>
+          <th style="width:90px;background-color: #02adb5e0; color: white;">Archivo cargado</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-data>
+        <tr [ngClass]="{'color-exitoso': data.Estado === 'Exitoso', 'color-ce': data.Estado === 'Con errores' }">
+          <td style="width:90px">{{data.NUMERO_RADICACION}}</td>
+          <td style="width:150px">{{data.NOMBRE_ARCHIVO}}</td>
+          <td style="width:110px">{{data.FECHA_CREACION | date:"dd/MM/yyyy HH:mm:ss"}}</td>
+          <td style="width:100px">{{data.REGISTROS_PROCESADOS}}</td>
+          <td style="width:80px">{{data.REGISTROS_VALIDOS}}</td>
+          <td style="width:60px">{{data.Porcentaje}}%</td>
+          <td style="width:80px">{{data.ERRORES_CE}}</td>
+          <td style="width:80px">{{data.ERRORES_CD}}</td>
+          <td style="width:80px">{{data.Estado}}</td>
+          <td style="width:70px">{{data.VIGENTE}}</td>
+          <td style="width:80px">{{data.TIPO_USUARIO}}</td>
+          <td style="width:80px">{{data.Login}}</td>
+          <td style="width:70px; padding: 0px;"><i id="btn" class="far fa-file-excel"
+              (click)="descargarLogsExcel(data.NUMERO_RADICACION)"></i>
+              <img [src]="'assets/img/txt.svg'" class="ing-fluid" alt="no image" id="ims"  (click)="descargarLogsTxt(data.NUMERO_RADICACION)">
+          </td>
+          <td style="width:70px; padding: 0px;"> <img [src]="'assets/img/zip.svg'"  class="ing-fluid" alt="no image" id="ims1"
+              (click)="descargarArchivoCargado(data.NUMERO_RADICACION)"> </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="y-card-footer" style="padding: 0px;">
+    <p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginador($event)"
+      [rowsPerPageOptions]="[5,10,20,30,50]"></p-paginator>
+  </div>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss" id="pagina">
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col-md-12">
+          <input type="number" class="form-control" type="text"
+            onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="radicado" [(ngModel)]="radicado"
+            placeholder="Radicado">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" (click)="ConsultarCargue()"
+      (click)="d('Cross click')" style="margin-right: 4px;"></button>
+    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
+      (click)="limpiarFiltros()" (click)="d('Cross click')"></button>
+  </div>
+</ng-template>
+
+<ng-template #content2 let-c="close" let-d="dismiss" id="pagina">
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col-md-12">
+          <input type="text" list="NombreArchivo" name="nombreArchvio" [(ngModel)]="nombreArchvio" id="tipo"
+            class="form-control" placeholder="Nombre archivo">
+          <datalist id="NombreArchivo">
+            <option *ngFor='let nombreArchivo of nombreArchivo' [ngValue]="nombreArchivo.NOMBRE_ARCHIVO">
+              {{nombreArchivo.NOMBRE_ARCHIVO}}
+            </option>
+          </datalist>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" (click)="ConsultarCargue()"
+      (click)="d('Cross click')" style="margin-right: 4px;"></button>
+    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
+      (click)="limpiarFiltros()" (click)="d('Cross click')"></button>
+  </div>
+</ng-template>
+
+
+<ng-template #content3 let-c="close" let-d="dismiss" id="pagina">
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col-md-12">
+          <select name="" id="" class="form-control" name="vigente" [(ngModel)]="vigente">
+            <option value="S">S</option>
+            <option value="N">N</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" (click)="ConsultarCargue()"
+      (click)="d('Cross click')" style="margin-right: 4px;"></button>
+    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
+      (click)="limpiarFiltros()" (click)="d('Cross click')"></button>
+  </div>
+</ng-template>
+
+<ng-template #content4 let-c="close" let-d="dismiss" id="pagina">
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col-md-12">
+          <select name="" id="" class="form-control" name="estado" [(ngModel)]="estado">
+            <option value="2">Exitoso</option>
+            <option value="4">Con errores</option>
+            <option value="3">Rechazado</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" (click)="ConsultarCargue()"
+      (click)="d('Cross click')" style="margin-right: 4px;"></button>
+    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
+      (click)="limpiarFiltros()" (click)="d('Cross click')"></button>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

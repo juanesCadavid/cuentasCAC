@@ -1,0 +1,57 @@
+<div class="y-card" style="background-color: white;">
+	<img src="assets/img/borde_bajo.png" alt="" style="height: 45%;width: 100%;position: absolute;top: 345px;">
+	<div class="y-card-body">
+		<section id="mainLogin" class="hero-section hero-section-2 ptb-100">
+			<div>
+				<div class="row align-items-center justify-content-between">
+					<div class="col-md-6 col-lg-6" id="primero">
+
+						<img id="aparecer" [src]="'assets/img/LOGO_PROCEX.png'" style="width:200px" alt="logo"
+							class="img-fluid pb-3">
+						<h3>Estado actual de la aplicación:</h3>
+						<p class="lead">Abierta para cargue hasta el día 10 (del 11 al 15 como cargue extemporáneo)
+						</p>
+						<div class="form-group input-group" style="width: 300px;">
+							<input type="text" name="usuario.PKUsuario" [(ngModel)]="usuario.PKUsuario"
+								class="form-control" placeholder="Usuario" autocomplete="off" required="" value="">
+						</div>
+						<div class="form-group input-group" style="width: 300px;">
+							<input type="password" name="usuario.password" [(ngModel)]="usuario.password"
+								class="form-control" placeholder="*******" required="" value="">
+						</div>
+
+						<button class="btn solid-btn btn-primary" (click)="Iniciarseccion()">Iniciar Sesión</button>
+
+					</div>
+					<div class="col-md-6 col-lg-5" id="segundo">
+						<div>
+							<img style="height: 300px;" class="img-fluid d-block animation-one"
+								[src]="'assets/img/pc.png'" alt="animation">
+							<img class="img-fluid d-none d-lg-block animation-two" [src]="'assets/img/float2_1.png'"
+								alt="animation" width="120">
+							<img style="height: 100px;width: 100px;" class="img-fluid d-none d-lg-block animation-four"
+								[src]="'assets/img/float4.png'" alt="animation" width="230">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div style="position: absolute;top: 88%;right: 78px;">
+			<a mat-icon-button target="_blank" id="icono" href="https://www.facebook.com/ProcexSoftware"><i
+					class="fab fa-facebook-square"></i></a>
+			<a mat-icon-button target="_blank" id="icono"
+				href="https://www.youtube.com/channel/UCBHC24rCn_0i4ukCnQiJuOg"><i class="fab fa-youtube"></i></a>
+			<a mat-icon-button [matMenuTriggerFor]="menu" target="_blank" id="icono"><i class="fas fa-headset"></i></a>
+			<mat-menu #menu="matMenu">
+				<a mat-menu-item class="appWhatsapp" target="_blank"
+					href="https://api.whatsapp.com/send?phone=573006660504">3006660504</a>
+				<a mat-menu-item class="appWhatsapp" target="_blank"
+					href="https://api.whatsapp.com/send?phone=573016908595">3016908595</a>
+				<a mat-menu-item class="appWhatsapp" target="_blank"
+					href="https://api.whatsapp.com/send?phone=573502905319">3502905319</a>
+				<a mat-menu-item class="appWhatsapp" target="_blank"
+					href="https://api.whatsapp.com/send?phone=573042813839">3042813839</a>
+			</mat-menu>
+		</div>
+	</div>
+</div>

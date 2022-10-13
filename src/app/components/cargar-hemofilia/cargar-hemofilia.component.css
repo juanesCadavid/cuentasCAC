@@ -1,0 +1,78 @@
+#ima{
+   height: 143px;
+}
+#seleccionar{
+    width: 200px;
+}
+#button{
+    MARGIN: 9PX;
+    HEIGHT: 30PX;
+    FONT-SIZE: 12PX;
+    margin-left: 2px;
+}
+#thead{
+    background-color: blue;
+}
+.table{
+    font-size: 10px;
+}
+
+body {
+    font-size: 12px;
+   }
+
+#btn{
+   color: green;
+    font-size: 18px;
+    margin-right: 8px;
+    cursor: pointer
+}
+#ims{
+ margin-top: -8px;
+ height:  18px;
+ cursor: pointer
+}
+#ims1{
+    margin-top: 0px;
+    height:  18px;
+    cursor: pointer
+   }
+#pagina{
+  position:fixed;
+}
+
+#img{
+    width: 30px;
+    height: 30px;
+}
+
+.cont-img-ca{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #4e92ce;
+    justify-content: center;
+    align-items: center;
+}
+.reporte{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    color: #4e92ce;
+    justify-content: center;
+    align-items: center;
+   
+}
+.p-datatable-sm{
+    height: 10px;
+}
+
+
+#menu{
+    float: right;
+    color:   #666666 ;
+    margin-top: -15px;
+  }
+  #pagina{
+    background-image: linear-gradient(to right, rgb(253, 255, 255),white)
+  }
